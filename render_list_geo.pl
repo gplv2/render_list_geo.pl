@@ -5,11 +5,12 @@ use Getopt::Std;
 use Math::Trig;
 
 my $options = {};
-getopts("n:x:X:y:Y:z:Z:h", $options);
+getopts("n:x:X:y:Y:z:Z:h:m", $options);
 
 if ($options->{h}) {
   print "options: (x,X,y,Y,z,Z - required, no checks, small letters should be less)\n";  
   print "  -n <n>         number of used concurrent threads\n";
+  print "  -m <layer>     layername (defaults to default)\n";
   print "  -x <x>, -X <x> start and end longitude (in geographic coordinates, WGS84)\n";
   print "  -y <y>, -Y <y> start and end latitude (in geographic coordinates, WGS84)\n";
   print "  -z <z>, -Z <z> start and end level value\n";
@@ -26,6 +27,7 @@ if ($options->{x} && $options->{X} &&
     print "\nRendering started at: ";
     system("date");
     print("\n");
+    if (!$options->{m}) { $m = 'default'; } else { $m = $options->{m}; }
     $z = $options->{z};
     $Z = $options->{Z};
     for my $iz ($options->{z}..$options->{Z})
@@ -41,7 +43,7 @@ if ($options->{x} && $options->{X} &&
 	$y=(int($y/$bulkSize)+1)*$bulkSize-1;
 	$n = 2;
 	#be careful! y and Y used in reversed order
-	$cmd="render_list -a -z ".$iz." -Z ".$iz." -x ".$x." -X ".$X." -y ".$Y." -Y ".$y;
+	$cmd="render_list -m ".$m." -a -z ".$iz." -Z ".$iz." -x ".$x." -X ".$X." -y ".$Y." -Y ".$y;
 	if ($options->{n}) {$cmd = $cmd." -n ".$options->{n}};
         print $cmd."\n";
 	system($cmd);
