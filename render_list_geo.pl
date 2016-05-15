@@ -18,7 +18,7 @@ if ($options->{h}) {
   exit;
 }
 
-my ($z, $Z);
+my ($z, $Z, $m);
 my $bulkSize=8;
 if ($options->{x} && $options->{X} &&
     $options->{y} && $options->{Y} &&
