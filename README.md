@@ -7,6 +7,7 @@ Perl script for automatic rendering OSM tiles for renderd+mod_tile with using ge
 ```
 where:
 <n> - number of concurrent threads
+<m> - layer name ( default )
 <z> - render tiles from this zoom level
 <Z> - render tiles to this zoom level
 <x> - render tiles from this latitude
