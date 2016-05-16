@@ -44,8 +44,8 @@ if ($options->{x} && $options->{X} &&
 	$n = 2;
 	#be careful! y and Y used in reversed order
 	$cmd="render_list -m ".$m." -a -z ".$iz." -Z ".$iz." -x ".$x." -X ".$X." -y ".$Y." -Y ".$y;
+    print $cmd."\n";
 	if ($options->{n}) {$cmd = $cmd." -n ".$options->{n}};
-        print $cmd."\n";
 	system($cmd);
 	print("\nZoom factor: ".$iz." finished at\n");
 	system("date");
